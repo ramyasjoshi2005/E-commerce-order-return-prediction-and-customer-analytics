@@ -2,7 +2,7 @@
 
 Predict whether a newly placed order will be returned using **only information available at order placement**, then explain associated factors without claiming causation.
 
-This is a focused Data Science project (analysis → statistics → leakage-safe features → model comparison → evaluation → SHAP → simple Flask app). It is aligned with an Amazon Data Scientist-1 Intern skill set: problem framing, data integrity, statistical testing, predictive modeling, validation, and business interpretation.
+This is a focused Data Science project (analysis → statistics → leakage-safe features → model comparison → evaluation → SHAP → simple Flask app). 
 
 ---
 
@@ -249,16 +249,3 @@ Pipeline steps (also runnable individually): `data_cleaning` → `feature_engine
 
 ---
 
-## How I would explain this project in an interview
-
-“I built an order-placement return model on a labeled US Superstore table. I first checked data integrity: Global Superstore files in the repo don’t join to the returns file, so I did not swap datasets or invent labels. I also dropped duplicate order IDs that had been leaking the current return into customer history and inflating the return rate.
-
-I engineered placement-time order features and point-in-time history. I tested whether prior returns predicted later returns with a two-proportion z-test; the difference was small and not significant.
-
-I trained a majority baseline, logistic regression, random forest, and XGBoost on 2018–2019, selected on 2020 PR-AUC, locked a 0.65 F1 threshold on validation, and evaluated 2021 once. Logistic regression won; I did not assume XGBoost would. Lift is modest, and class-weighted probabilities are not well calibrated, so I treat the output as a ranking score for review, not a causal lever and not a guaranteed return reduction.”
-
----
-
-## How I would explain this in 2–3 minutes
-
-Use the paragraph above. The implementation matches that story: leakage fix, non-significant z-test, LR selected on validation PR-AUC, locked threshold, SHAP/linear attributions, Flask studio on real customers.
