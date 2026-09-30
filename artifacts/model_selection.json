@@ -1,0 +1,9 @@
+{
+  "selected_model": "Logistic Regression",
+  "selection_metric": "validation PR-AUC",
+  "validation_pr_auc": 0.14849937392617607,
+  "locked_threshold": 0.65,
+  "threshold_rule": "Maximize F1 on the validation set over thresholds 0.05\u20130.95. The threshold is locked before any test evaluation.",
+  "imbalance_handling": "Positive class is 5.7% in training. Used class_weight='balanced' / scale_pos_weight. SMOTE was not used because interpolating neighbors can mix customers across time.",
+  "calibration_note": "Class weighting improves recall but typically pushes probabilities upward, so Brier score can be worse than a constant base-rate predictor. Model selection used PR-AUC (ranking). Displayed probabilities should be treated as risk scores, not as perfectly calibrated frequencies."
+}

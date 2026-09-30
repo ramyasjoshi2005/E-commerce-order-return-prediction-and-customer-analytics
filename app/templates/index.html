@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Return Prediction</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>📦 Product Return Prediction & Root-Cause Analytics</h1>
+    </div>
+
+    <div class="container">
+        <!-- Customer Section -->
+        <div class="card">
+            <h2>Select Customer</h2>
+            <div class="form-group">
+                <label for="customer_id">Search Customer:</label>
+                <select id="customer_id" onchange="fetchCustomerHistory()">
+                    <option value="">Select a customer...</option>
+                </select>
+            </div>
+            
+            <div id="customer_profile" style="display:none;">
+                <h3>Customer Profile (Calculated strictly before new order date)</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Historical Orders</span>
+                        <span class="value" id="hist_orders">0</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Historical Returns</span>
+                        <span class="value" id="hist_returns">0</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Hist. Return Rate</span>
+                        <span class="value" id="hist_rate">0%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Average Order Value</span>
+                        <span class="value" id="avg_aov">$0</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Days Since Prev Order</span>
+                        <span class="value" id="days_prev">0</span>
+                    </div>
+                </div>
+
+                <h3>Past Orders (Point-in-Time)</h3>
+                <table id="history_table">
+                    <thead>
+                        <tr>
+                            <th>Order Date</th>
+                            <th>Category</th>
+                            <th>Sales</th>
+                            <th>Quantity</th>
+                            <th>Discount</th>
+                            <th>Returned</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- New Order Section -->
+        <div class="card">
+            <h2>Enter New Order</h2>
+            <form id="order_form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="order_date">Order Date</label>
+                        <input type="date" id="order_date" value="2021-08-17" onchange="fetchCustomerHistory()">
+                    </div>
+                    <div class="form-group">
+                        <label for="market">Market</label>
+                        <select id="market">
+                            <option>US</option><option>Europe</option><option>APAC</option><option>LATAM</option><option>Africa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <select id="region">
+                            <option>West</option><option>East</option><option>Central</option><option>South</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option>United States</option><option>France</option><option>Germany</option><option>United Kingdom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="segment">Segment</label>
+                        <select id="segment">
+                            <option>Consumer</option><option>Corporate</option><option>Home Office</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_priority">Order Priority</label>
+                        <select id="order_priority">
+                            <option>High</option><option>Medium</option><option>Low</option><option>Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_sales">Total Sales ($)</label>
+                        <input type="number" id="total_sales" value="450.00" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="total_quantity">Quantity</label>
+                        <input type="number" id="total_quantity" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="average_discount">Average Discount</label>
+                        <input type="number" id="average_discount" value="0.10" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="max_discount">Maximum Discount</label>
+                        <input type="number" id="max_discount" value="0.20" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_products"># of Products</label>
+                        <input type="number" id="number_of_products" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_categories"># of Categories</label>
+                        <input type="number" id="number_of_categories" value="1">
+                    </div>
+                </div>
+                <button type="button" class="btn-predict" onclick="predictRisk()">PREDICT RETURN RISK</button>
+            </form>
+        </div>
+
+        <!-- Result Section -->
+        <div class="card result-card" id="result_section" style="display:none;">
+            <h2>RETURN RISK</h2>
+            <div class="result-box">
+                <div class="prob" id="res_prob">0.0%</div>
+                <div class="class" id="res_class">LOW RISK</div>
+                <div class="thresh">Prediction threshold: <span id="res_thresh">65</span>%</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress_fill"></div>
+            </div>
+
+            <div class="shap-section">
+                <h3>Why did the model make this prediction?</h3>
+                <p><i>SHAP describes model contribution/association and does not establish causation.</i></p>
+                <div id="shap_container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

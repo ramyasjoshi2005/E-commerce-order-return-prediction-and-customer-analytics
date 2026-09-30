@@ -1,0 +1,7 @@
+feature,available_at_order_placement,safe,reason
+order_value / quantity / discount,Yes,Yes,Known at checkout.
+"region, segment, order_priority, calendar fields",Yes,Yes,Known when the order is placed.
+"previous_order_count, previous_return_count, historical_return_rate, historical_average_order_value, days_since_previous_order",Yes,Yes,"Computed from orders strictly before the current order (date, then order_id)."
+returned (target),No,No (label only),Outcome after the order. Never used as a feature.
+"profit, shipping_cost, ship_date",No,Excluded,Post-order / settlement information.
+return reason / return date,No,Excluded,Not present; would be post-return leakage if used.

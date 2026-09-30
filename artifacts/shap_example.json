@@ -1,0 +1,50 @@
+{
+  "order_id": "CA-2020-103982",
+  "customer_id": "AA-10315",
+  "order_date": "2020-03-03",
+  "actual_returned": 0,
+  "base_value": -0.7838301325894305,
+  "contributions": [
+    {
+      "feature": "num__number_of_products",
+      "shap": 0.8542889516559476,
+      "direction": "increase"
+    },
+    {
+      "feature": "cat__order_month_3",
+      "shap": -0.5248869936433685,
+      "direction": "decrease"
+    },
+    {
+      "feature": "cat__order_day_of_week_1",
+      "shap": -0.39994104732965763,
+      "direction": "decrease"
+    },
+    {
+      "feature": "num__quantity",
+      "shap": -0.35667959652285786,
+      "direction": "decrease"
+    },
+    {
+      "feature": "num__number_of_categories",
+      "shap": 0.2512632397253026,
+      "direction": "increase"
+    },
+    {
+      "feature": "cat__region_West",
+      "shap": -0.2342801001357005,
+      "direction": "decrease"
+    },
+    {
+      "feature": "num__previous_return_count",
+      "shap": 0.2340102710206519,
+      "direction": "increase"
+    },
+    {
+      "feature": "cat__region_Central",
+      "shap": -0.18134880992086924,
+      "direction": "decrease"
+    }
+  ],
+  "plain_language": "SHAP shows how each feature contributed to moving this prediction higher or lower relative to the model's baseline. It does not prove that a feature caused a return."
+}

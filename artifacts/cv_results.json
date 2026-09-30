@@ -1,0 +1,20 @@
+{
+  "strategy": "TimeSeriesSplit on training period only",
+  "n_splits": 3,
+  "folds": [
+    {
+      "fold": 1,
+      "pr_auc": 0.07515368236336945
+    },
+    {
+      "fold": 2,
+      "pr_auc": 0.09530673054749707
+    },
+    {
+      "fold": 3,
+      "pr_auc": 0.131049928007093
+    }
+  ],
+  "mean_pr_auc": 0.10050344697265316,
+  "reason": "Orders are time-ordered. Random k-fold would mix later customer behavior into earlier folds. Expanding-window TimeSeriesSplit respects chronology."
+}

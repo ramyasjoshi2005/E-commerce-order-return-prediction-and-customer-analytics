@@ -1,0 +1,16 @@
+feature,mean_abs_shap
+num__number_of_products,0.44183407853327933
+num__previous_return_count,0.4239715498491802
+cat__region_West,0.3827551135967004
+num__max_discount,0.2337036487118758
+num__quantity,0.23217842644454081
+num__discount,0.19788626631353218
+cat__order_day_of_week_1,0.1937011775174987
+num__number_of_categories,0.17719520644975673
+num__historical_return_rate,0.15902149663369525
+cat__region_East,0.14588724560261446
+cat__region_South,0.1321888891458092
+cat__segment_Corporate,0.12519914769278842
+cat__order_month_6,0.12209462303117805
+cat__region_Central,0.09601411991921557
+cat__segment_Home Office,0.07432356960345414

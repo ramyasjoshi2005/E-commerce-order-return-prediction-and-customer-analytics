@@ -1,0 +1,159 @@
+{
+  "overall": {
+    "n_orders": 5009,
+    "return_rate": 0.05909363146336594,
+    "n_returns": 296
+  },
+  "return_rate_by_segment": [
+    {
+      "group": "Consumer",
+      "n_orders": 2586,
+      "n_returns": 154,
+      "return_rate": 0.05955143078112916
+    },
+    {
+      "group": "Corporate",
+      "n_orders": 1514,
+      "n_returns": 93,
+      "return_rate": 0.06142668428005284
+    },
+    {
+      "group": "Home Office",
+      "n_orders": 909,
+      "n_returns": 49,
+      "return_rate": 0.0539053905390539
+    }
+  ],
+  "return_rate_by_region": [
+    {
+      "group": "Central",
+      "n_orders": 1175,
+      "n_returns": 39,
+      "return_rate": 0.033191489361702124
+    },
+    {
+      "group": "East",
+      "n_orders": 1401,
+      "n_returns": 44,
+      "return_rate": 0.03140613847251963
+    },
+    {
+      "group": "South",
+      "n_orders": 822,
+      "n_returns": 24,
+      "return_rate": 0.029197080291970802
+    },
+    {
+      "group": "West",
+      "n_orders": 1611,
+      "n_returns": 189,
+      "return_rate": 0.11731843575418995
+    }
+  ],
+  "return_rate_by_priority": [
+    {
+      "group": "Medium",
+      "n_orders": 5009,
+      "n_returns": 296,
+      "return_rate": 0.05909363146336594
+    }
+  ],
+  "return_rate_by_discount": [
+    {
+      "group": "0%",
+      "n_orders": 2055,
+      "n_returns": 100,
+      "return_rate": 0.04866180048661801
+    },
+    {
+      "group": "0\u201320%",
+      "n_orders": 1963,
+      "n_returns": 147,
+      "return_rate": 0.0748853795211411
+    },
+    {
+      "group": "20\u201340%",
+      "n_orders": 463,
+      "n_returns": 27,
+      "return_rate": 0.058315334773218146
+    },
+    {
+      "group": ">40%",
+      "n_orders": 528,
+      "n_returns": 22,
+      "return_rate": 0.041666666666666664
+    }
+  ],
+  "return_rate_by_order_value": [
+    {
+      "group": "\u2264$50",
+      "n_orders": 1484,
+      "n_returns": 52,
+      "return_rate": 0.03504043126684636
+    },
+    {
+      "group": "$50\u2013150",
+      "n_orders": 1009,
+      "n_returns": 56,
+      "return_rate": 0.05550049554013875
+    },
+    {
+      "group": "$150\u2013400",
+      "n_orders": 998,
+      "n_returns": 70,
+      "return_rate": 0.07014028056112225
+    },
+    {
+      "group": ">$400",
+      "n_orders": 1518,
+      "n_returns": 118,
+      "return_rate": 0.077733860342556
+    }
+  ],
+  "return_rate_by_prior_returns": [
+    {
+      "group": "Had previous return(s)",
+      "n_orders": 774,
+      "n_returns": 49,
+      "return_rate": 0.06330749354005168
+    },
+    {
+      "group": "No previous return",
+      "n_orders": 4235,
+      "n_returns": 247,
+      "return_rate": 0.05832349468713105
+    }
+  ],
+  "return_rate_by_year": [
+    {
+      "group": "2018",
+      "n_orders": 969,
+      "n_returns": 53,
+      "return_rate": 0.054695562435500514
+    },
+    {
+      "group": "2019",
+      "n_orders": 1038,
+      "n_returns": 61,
+      "return_rate": 0.05876685934489403
+    },
+    {
+      "group": "2020",
+      "n_orders": 1315,
+      "n_returns": 77,
+      "return_rate": 0.05855513307984791
+    },
+    {
+      "group": "2021",
+      "n_orders": 1687,
+      "n_returns": 105,
+      "return_rate": 0.06224066390041494
+    }
+  ],
+  "interpretations": {
+    "segment": "Observed return rates by customer segment. Differences are associations, not causal effects of segment.",
+    "discount": "Observed return rates by discount at order placement. Higher discounts may coincide with different products or promotions.",
+    "order_value": "Observed return rates by order value. Value is known at checkout.",
+    "history": "Point-in-time prior returns versus subsequent return rate \u2014 the same grouping used in the hypothesis test."
+  }
+}

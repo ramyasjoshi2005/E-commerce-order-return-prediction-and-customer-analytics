@@ -1,0 +1,68 @@
+{
+  "answers": [
+    {
+      "q": "Problem statement",
+      "a": "Predict whether a newly placed order will be returned using only information available at order placement, and identify associated factors."
+    },
+    {
+      "q": "Why this problem?",
+      "a": "Returns consume logistics cost after checkout. A probability at placement is early enough to review high-risk orders without waiting for shipment data."
+    },
+    {
+      "q": "Why this target?",
+      "a": "Returned vs not returned is the operational decision unit. The business action (review, outreach) is at order level, so the label is order-level."
+    },
+    {
+      "q": "Prediction point",
+      "a": "The moment the customer places the order. Profit, shipping cost, ship date, return date, and return reason are excluded."
+    },
+    {
+      "q": "How leakage was prevented",
+      "a": "Duplicate order_id rows that counted an order as its own history were dropped. Customer history uses only earlier orders (date, then order_id). The 2021 test set was not used for model selection or threshold tuning."
+    },
+    {
+      "q": "Feature engineering",
+      "a": "Current-order fields (value, quantity, discount, segment, region, priority, calendar) plus point-in-time history (prior orders, prior returns, historical return rate, average prior order value, days since previous order)."
+    },
+    {
+      "q": "Why the statistical test was selected",
+      "a": "The research question is a comparison of two proportions. A two-sided two-proportion z-test matches that question. Result: z=0.54, p=0.5887. Significance is not causation."
+    },
+    {
+      "q": "Why these ML models were selected",
+      "a": "A majority baseline shows the imbalance. Logistic regression is a linear, inspectable model. Random forest and XGBoost capture non-linear interactions. The set is small on purpose."
+    },
+    {
+      "q": "Why the final model was selected",
+      "a": "Validation PR-AUC (2020), not a pre-chosen algorithm. Comparison: Majority-class baseline: PR-AUC 0.059, ROC-AUC 0.500; Logistic Regression: PR-AUC 0.148, ROC-AUC 0.630; Random Forest: PR-AUC 0.118, ROC-AUC 0.674; XGBoost: PR-AUC 0.090, ROC-AUC 0.631. Selected: Logistic Regression."
+    },
+    {
+      "q": "Evaluation metrics",
+      "a": "On the untouched 2021 test set: ROC-AUC 0.693, PR-AUC 0.154, precision 0.175, recall 0.343, F1 0.232, accuracy 0.858 (secondary), Brier 0.170."
+    },
+    {
+      "q": "Why PR-AUC matters",
+      "a": "Overall return rate is 5.9%. Accuracy is easy to inflate by always predicting no return. PR-AUC focuses on ranking the positive class."
+    },
+    {
+      "q": "Threshold selection",
+      "a": "Threshold 0.65 was chosen to maximize F1 on validation, then locked. The test set was not used to pick it."
+    },
+    {
+      "q": "SHAP explanation",
+      "a": "SHAP attributes how features move a prediction up or down versus a baseline. It is not causal. Top global |SHAP| features (validation sample): num__number_of_products, num__previous_return_count, cat__region_West, num__max_discount, num__quantity."
+    },
+    {
+      "q": "Main business insight",
+      "a": "West had the highest observed regional return rate (11.7%, n=1,611) versus South (2.9%, n=822)."
+    },
+    {
+      "q": "Business recommendation",
+      "a": "The model can flag higher-risk orders at placement for targeted review or customer-experience follow-up. It should not be used to automatically block customers. Any operational intervention (holds, outreach, policy changes) would need a controlled experiment / A/B test to estimate causal impact on return rate or cost. This project does not claim a percentage reduction in returns."
+    },
+    {
+      "q": "Limitations",
+      "a": "Labeled data is US Superstore orders 2018-01-03 to 2021-12-30 (5,009 orders). Product category is not in the labeled table. Train 2,007 / val 1,315 / test 1,687. TimeSeriesSplit mean PR-AUC on train folds: 0.10050344697265316. No experiment measures causal return reduction. India is not in this labeled table."
+    }
+  ]
+}

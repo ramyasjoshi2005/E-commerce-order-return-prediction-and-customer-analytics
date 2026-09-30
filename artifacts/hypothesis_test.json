@@ -1,0 +1,27 @@
+{
+  "research_question": "Do customers with previous returns have a different subsequent return rate compared with customers without previous returns?",
+  "null_hypothesis": "H0: p_A = p_B (equal subsequent return probabilities)",
+  "alternative_hypothesis": "H1: p_A \u2260 p_B (two-sided)",
+  "test_name": "Two-proportion z-test (two-sided)",
+  "group_a_definition": "Orders with at least one previous return by the same customer (point-in-time)",
+  "group_b_definition": "Orders with zero previous returns by the same customer (includes first orders)",
+  "outcome": "Whether the current order was returned",
+  "alpha": 0.05,
+  "z_statistic": 0.5406996168264073,
+  "p_value": 0.5887146426465419,
+  "diff_proportions": 0.004983998852920626,
+  "ci_95": [
+    -0.013566737135153405,
+    0.023534734840994657
+  ],
+  "risk_ratio": 1.0854543932879306,
+  "p1": 0.06330749354005168,
+  "p2": 0.05832349468713105,
+  "n1": 774,
+  "n2": 4235,
+  "x1": 49,
+  "x2": 247,
+  "significant_at_0.05": false,
+  "interpretation": "At alpha = 0.05 we do not reject the null hypothesis (p = 0.5887). The observed difference in subsequent return rates is compatible with chance variation under equal population proportions. This does not prove the rates are equal, and it does not establish causation.",
+  "causation_disclaimer": "Statistical significance describes evidence against equal proportions. It does not imply that prior returns cause later returns."
+}

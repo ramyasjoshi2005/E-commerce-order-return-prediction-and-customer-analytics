@@ -1,0 +1,68 @@
+{
+  "model_type": "LogisticRegression",
+  "sample_size": 400,
+  "sample_source": "validation set (not test)",
+  "top_features": [
+    {
+      "feature": "num__number_of_products",
+      "mean_abs_shap": 0.44183407853327933
+    },
+    {
+      "feature": "num__previous_return_count",
+      "mean_abs_shap": 0.4239715498491802
+    },
+    {
+      "feature": "cat__region_West",
+      "mean_abs_shap": 0.3827551135967004
+    },
+    {
+      "feature": "num__max_discount",
+      "mean_abs_shap": 0.2337036487118758
+    },
+    {
+      "feature": "num__quantity",
+      "mean_abs_shap": 0.23217842644454081
+    },
+    {
+      "feature": "num__discount",
+      "mean_abs_shap": 0.19788626631353218
+    },
+    {
+      "feature": "cat__order_day_of_week_1",
+      "mean_abs_shap": 0.1937011775174987
+    },
+    {
+      "feature": "num__number_of_categories",
+      "mean_abs_shap": 0.17719520644975673
+    },
+    {
+      "feature": "num__historical_return_rate",
+      "mean_abs_shap": 0.15902149663369525
+    },
+    {
+      "feature": "cat__region_East",
+      "mean_abs_shap": 0.14588724560261446
+    },
+    {
+      "feature": "cat__region_South",
+      "mean_abs_shap": 0.1321888891458092
+    },
+    {
+      "feature": "cat__segment_Corporate",
+      "mean_abs_shap": 0.12519914769278842
+    },
+    {
+      "feature": "cat__order_month_6",
+      "mean_abs_shap": 0.12209462303117805
+    },
+    {
+      "feature": "cat__region_Central",
+      "mean_abs_shap": 0.09601411991921557
+    },
+    {
+      "feature": "cat__segment_Home Office",
+      "mean_abs_shap": 0.07432356960345414
+    }
+  ],
+  "plain_language": "Global SHAP ranks features by average absolute contribution to predictions. This is model attribution, not a causal ranking."
+}

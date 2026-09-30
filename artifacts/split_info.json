@@ -1,0 +1,12 @@
+{
+  "train_period": "2018-01-01 to 2019-12-31",
+  "validation_period": "2020-01-01 to 2020-12-31",
+  "test_period": "2021-01-01 to 2021-12-30",
+  "n_train": 2007,
+  "n_val": 1315,
+  "n_test": 1687,
+  "train_return_rate": 0.05680119581464873,
+  "val_return_rate": 0.05855513307984791,
+  "test_return_rate": 0.06224066390041494,
+  "rationale": "The labeled table spans 2018\u20132021. Earlier years train the model; 2020 is used for model selection and threshold locking; 2021 is touched once for final evaluation."
+}

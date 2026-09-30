@@ -1,0 +1,353 @@
+[
+  {
+    "title": "Analytical queries on the labeled order table (SQLite).",
+    "columns": [
+      "n_orders",
+      "n_returns",
+      "return_rate"
+    ],
+    "rows": [
+      {
+        "n_orders": 5009,
+        "n_returns": 296,
+        "return_rate": 0.05909363146336594
+      }
+    ],
+    "sql": "-- Analytical queries on the labeled order table (SQLite).\n-- Grain: one row per order. Target: returned (1/0).\n\n-- Overall return rate\nSELECT\n    COUNT(*) AS n_orders,\n    SUM(returned) AS n_returns,\n    AVG(returned) AS return_rate\nFROM orders"
+  },
+  {
+    "title": "Return rate by customer segment",
+    "columns": [
+      "segment",
+      "n_orders",
+      "n_returns",
+      "return_rate"
+    ],
+    "rows": [
+      {
+        "segment": "Corporate",
+        "n_orders": 1514,
+        "n_returns": 93,
+        "return_rate": 0.06142668428005284
+      },
+      {
+        "segment": "Consumer",
+        "n_orders": 2586,
+        "n_returns": 154,
+        "return_rate": 0.05955143078112916
+      },
+      {
+        "segment": "Home Office",
+        "n_orders": 909,
+        "n_returns": 49,
+        "return_rate": 0.0539053905390539
+      }
+    ],
+    "sql": "-- Return rate by customer segment\nSELECT\n    segment,\n    COUNT(*) AS n_orders,\n    SUM(returned) AS n_returns,\n    AVG(returned) AS return_rate\nFROM orders\nGROUP BY segment\nORDER BY return_rate DESC"
+  },
+  {
+    "title": "Return rate by US region",
+    "columns": [
+      "region",
+      "n_orders",
+      "n_returns",
+      "return_rate"
+    ],
+    "rows": [
+      {
+        "region": "West",
+        "n_orders": 1611,
+        "n_returns": 189,
+        "return_rate": 0.11731843575418995
+      },
+      {
+        "region": "Central",
+        "n_orders": 1175,
+        "n_returns": 39,
+        "return_rate": 0.033191489361702124
+      },
+      {
+        "region": "East",
+        "n_orders": 1401,
+        "n_returns": 44,
+        "return_rate": 0.03140613847251963
+      },
+      {
+        "region": "South",
+        "n_orders": 822,
+        "n_returns": 24,
+        "return_rate": 0.029197080291970802
+      }
+    ],
+    "sql": "-- Return rate by US region\nSELECT\n    region,\n    COUNT(*) AS n_orders,\n    SUM(returned) AS n_returns,\n    AVG(returned) AS return_rate\nFROM orders\nGROUP BY region\nORDER BY return_rate DESC"
+  },
+  {
+    "title": "Average order value by return status",
+    "columns": [
+      "return_status",
+      "n_orders",
+      "avg_order_value",
+      "avg_discount",
+      "avg_quantity"
+    ],
+    "rows": [
+      {
+        "return_status": "Not returned",
+        "n_orders": 4713,
+        "avg_order_value": 449.11873167833653,
+        "avg_discount": 0.15823482666989988,
+        "avg_quantity": 7.388075535752175
+      },
+      {
+        "return_status": "Returned",
+        "n_orders": 296,
+        "avg_order_value": 609.8117496621622,
+        "avg_discount": 0.13415233415233416,
+        "avg_quantity": 10.31418918918919
+      }
+    ],
+    "sql": "-- Average order value by return status\nSELECT\n    CASE WHEN returned = 1 THEN 'Returned' ELSE 'Not returned' END AS return_status,\n    COUNT(*) AS n_orders,\n    AVG(order_value) AS avg_order_value,\n    AVG(discount) AS avg_discount,\n    AVG(quantity) AS avg_quantity\nFROM orders\nGROUP BY returned"
+  },
+  {
+    "title": "Customer-level order and return counts (customers with at least 3 orders)",
+    "columns": [
+      "customer_id",
+      "n_orders",
+      "n_returns",
+      "customer_return_rate",
+      "avg_order_value"
+    ],
+    "rows": [
+      {
+        "customer_id": "DE-13255",
+        "n_orders": 5,
+        "n_returns": 3,
+        "customer_return_rate": 0.6,
+        "avg_order_value": 510.17479999999995
+      },
+      {
+        "customer_id": "AY-10555",
+        "n_orders": 4,
+        "n_returns": 2,
+        "customer_return_rate": 0.5,
+        "avg_order_value": 124.2535
+      },
+      {
+        "customer_id": "MK-18160",
+        "n_orders": 4,
+        "n_returns": 2,
+        "customer_return_rate": 0.5,
+        "avg_order_value": 257.9005
+      },
+      {
+        "customer_id": "MM-17260",
+        "n_orders": 4,
+        "n_returns": 2,
+        "customer_return_rate": 0.5,
+        "avg_order_value": 328.50575000000003
+      },
+      {
+        "customer_id": "MT-18070",
+        "n_orders": 4,
+        "n_returns": 2,
+        "customer_return_rate": 0.5,
+        "avg_order_value": 329.86244999999997
+      },
+      {
+        "customer_id": "BS-11755",
+        "n_orders": 7,
+        "n_returns": 3,
+        "customer_return_rate": 0.42857142857142855,
+        "avg_order_value": 366.0545714285714
+      },
+      {
+        "customer_id": "CD-11920",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4,
+        "avg_order_value": 406.79359999999997
+      },
+      {
+        "customer_id": "CS-11845",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4,
+        "avg_order_value": 255.7908
+      },
+      {
+        "customer_id": "LW-16825",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4,
+        "avg_order_value": 447.61220000000003
+      },
+      {
+        "customer_id": "TB-21055",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4,
+        "avg_order_value": 293.57620000000003
+      },
+      {
+        "customer_id": "BH-11710",
+        "n_orders": 8,
+        "n_returns": 3,
+        "customer_return_rate": 0.375,
+        "avg_order_value": 781.918875
+      },
+      {
+        "customer_id": "MV-17485",
+        "n_orders": 9,
+        "n_returns": 3,
+        "customer_return_rate": 0.3333333333333333,
+        "avg_order_value": 173.3388888888889
+      },
+      {
+        "customer_id": "MH-17290",
+        "n_orders": 6,
+        "n_returns": 2,
+        "customer_return_rate": 0.3333333333333333,
+        "avg_order_value": 399.00416666666666
+      },
+      {
+        "customer_id": "TS-21160",
+        "n_orders": 6,
+        "n_returns": 2,
+        "customer_return_rate": 0.3333333333333333,
+        "avg_order_value": 360.604
+      },
+      {
+        "customer_id": "BD-11635",
+        "n_orders": 3,
+        "n_returns": 1,
+        "customer_return_rate": 0.3333333333333333,
+        "avg_order_value": 194.21533333333332
+      }
+    ],
+    "sql": "-- Customer-level order and return counts (customers with at least 3 orders)\nSELECT\n    customer_id,\n    COUNT(*) AS n_orders,\n    SUM(returned) AS n_returns,\n    AVG(returned) AS customer_return_rate,\n    AVG(order_value) AS avg_order_value\nFROM orders\nGROUP BY customer_id\nHAVING COUNT(*) >= 3\nORDER BY customer_return_rate DESC, n_orders DESC\nLIMIT 15"
+  },
+  {
+    "title": "Discount buckets vs return rate",
+    "columns": [
+      "discount_bucket",
+      "n_orders",
+      "return_rate"
+    ],
+    "rows": [
+      {
+        "discount_bucket": "0-20%",
+        "n_orders": 1963,
+        "return_rate": 0.0748853795211411
+      },
+      {
+        "discount_bucket": "20-40%",
+        "n_orders": 463,
+        "return_rate": 0.058315334773218146
+      },
+      {
+        "discount_bucket": "0%",
+        "n_orders": 2055,
+        "return_rate": 0.04866180048661801
+      },
+      {
+        "discount_bucket": ">40%",
+        "n_orders": 528,
+        "return_rate": 0.041666666666666664
+      }
+    ],
+    "sql": "-- Discount buckets vs return rate\nSELECT\n    CASE\n        WHEN discount = 0 THEN '0%'\n        WHEN discount <= 0.2 THEN '0-20%'\n        WHEN discount <= 0.4 THEN '20-40%'\n        ELSE '>40%'\n    END AS discount_bucket,\n    COUNT(*) AS n_orders,\n    AVG(returned) AS return_rate\nFROM orders\nGROUP BY discount_bucket\nORDER BY return_rate DESC"
+  },
+  {
+    "title": "Customers whose return rate exceeds the overall rate (HAVING)",
+    "columns": [
+      "customer_id",
+      "n_orders",
+      "n_returns",
+      "customer_return_rate"
+    ],
+    "rows": [
+      {
+        "customer_id": "DE-13255",
+        "n_orders": 5,
+        "n_returns": 3,
+        "customer_return_rate": 0.6
+      },
+      {
+        "customer_id": "BS-11755",
+        "n_orders": 7,
+        "n_returns": 3,
+        "customer_return_rate": 0.42857142857142855
+      },
+      {
+        "customer_id": "CD-11920",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4
+      },
+      {
+        "customer_id": "CS-11845",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4
+      },
+      {
+        "customer_id": "LW-16825",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4
+      },
+      {
+        "customer_id": "TB-21055",
+        "n_orders": 5,
+        "n_returns": 2,
+        "customer_return_rate": 0.4
+      },
+      {
+        "customer_id": "BH-11710",
+        "n_orders": 8,
+        "n_returns": 3,
+        "customer_return_rate": 0.375
+      },
+      {
+        "customer_id": "MH-17290",
+        "n_orders": 6,
+        "n_returns": 2,
+        "customer_return_rate": 0.3333333333333333
+      },
+      {
+        "customer_id": "MV-17485",
+        "n_orders": 9,
+        "n_returns": 3,
+        "customer_return_rate": 0.3333333333333333
+      },
+      {
+        "customer_id": "TS-21160",
+        "n_orders": 6,
+        "n_returns": 2,
+        "customer_return_rate": 0.3333333333333333
+      }
+    ],
+    "sql": "-- Customers whose return rate exceeds the overall rate (HAVING)\nSELECT\n    o.customer_id,\n    COUNT(*) AS n_orders,\n    SUM(o.returned) AS n_returns,\n    AVG(o.returned) AS customer_return_rate\nFROM orders o\nGROUP BY o.customer_id\nHAVING AVG(o.returned) > (SELECT AVG(returned) FROM orders)\n   AND COUNT(*) >= 5\nORDER BY customer_return_rate DESC\nLIMIT 10"
+  },
+  {
+    "title": "Point-in-time prior returns vs later outcome using a window (not used as a model feature here)",
+    "columns": [
+      "history_group",
+      "n_orders",
+      "subsequent_return_rate"
+    ],
+    "rows": [
+      {
+        "history_group": "had_previous_return",
+        "n_orders": 774,
+        "subsequent_return_rate": 0.06330749354005168
+      },
+      {
+        "history_group": "no_previous_return",
+        "n_orders": 4235,
+        "subsequent_return_rate": 0.05832349468713105
+      }
+    ],
+    "sql": "-- Point-in-time prior returns vs later outcome using a window (not used as a model feature here)\nWITH ordered AS (\n    SELECT\n        customer_id,\n        order_id,\n        order_date,\n        returned,\n        SUM(returned) OVER (\n            PARTITION BY customer_id\n            ORDER BY order_date, order_id\n            ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING\n        ) AS previous_return_count\n    FROM orders\n)\nSELECT\n    CASE WHEN COALESCE(previous_return_count, 0) >= 1 THEN 'had_previous_return' ELSE 'no_previous_return' END AS history_group,\n    COUNT(*) AS n_orders,\n    AVG(returned) AS subsequent_return_rate\nFROM ordered\nGROUP BY history_group"
+  }
+]

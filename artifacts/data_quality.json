@@ -1,0 +1,127 @@
+{
+  "dataset_name": "Tableau Sample Superstore (US) \u2014 labeled order table already in this repo",
+  "modeling_grain": "one row per order_id",
+  "n_orders": 5009,
+  "n_customers": 793,
+  "date_min": "2018-01-03",
+  "date_max": "2021-12-30",
+  "orders_by_year": {
+    "2018": 969,
+    "2019": 1038,
+    "2020": 1315,
+    "2021": 1687
+  },
+  "return_rate": 0.05909363146336594,
+  "n_returns": 296,
+  "n_non_returns": 4713,
+  "class_balance": {
+    "no_return": 0.940906368536634,
+    "return": 0.05909363146336594
+  },
+  "missing_values": {
+    "order_id": 0,
+    "customer_id": 0,
+    "order_date": 0,
+    "market": 0,
+    "region": 0,
+    "country": 0,
+    "segment": 0,
+    "order_priority": 0,
+    "order_value": 0,
+    "quantity": 0,
+    "discount": 0,
+    "max_discount": 0,
+    "number_of_products": 0,
+    "number_of_categories": 0,
+    "returned": 0
+  },
+  "duplicate_order_ids_after_clean": 0,
+  "duplicate_order_ids_dropped": 504,
+  "invalid_order_value": 0,
+  "invalid_quantity": 0,
+  "invalid_discount": 0,
+  "countries": [
+    "United States"
+  ],
+  "markets": [
+    "US"
+  ],
+  "regions": [
+    "Central",
+    "East",
+    "South",
+    "West"
+  ],
+  "segments": [
+    "Consumer",
+    "Corporate",
+    "Home Office"
+  ],
+  "order_priorities": [
+    "Medium"
+  ],
+  "india_in_modeling_data": false,
+  "constant_columns": [
+    "market",
+    "country"
+  ],
+  "numeric_summary": {
+    "order_value": {
+      "count": 5009.0,
+      "mean": 458.61466566180883,
+      "std": 954.7309528113302,
+      "min": 0.5559999999999998,
+      "25%": 37.63,
+      "50%": 151.96,
+      "75%": 512.0640000000001,
+      "max": 23661.228
+    },
+    "quantity": {
+      "count": 5009.0,
+      "mean": 7.560990217608305,
+      "std": 6.22003387317871,
+      "min": 1.0,
+      "25%": 3.0,
+      "50%": 6.0,
+      "75%": 10.0,
+      "max": 52.0
+    },
+    "discount": {
+      "count": 5009.0,
+      "mean": 0.15681170473234757,
+      "std": 0.19082852015141344,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.1,
+      "75%": 0.2,
+      "max": 0.8
+    },
+    "max_discount": {
+      "count": 5009.0,
+      "mean": 0.19922739069674586,
+      "std": 0.2384944750240811,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.2,
+      "75%": 0.2,
+      "max": 0.8
+    }
+  },
+  "global_superstore_inspection": {
+    "orders_file": "Global_Superstore2.csv",
+    "returns_file": "returns.csv",
+    "used_for_modeling": false,
+    "reason": "Order IDs do not overlap between Global_Superstore2.csv and returns.csv. Returns use a different ID scheme and include 2015 dates, while the order file covers 2011-2014. Using it would require fabricating return labels.",
+    "global_line_items": 51290,
+    "global_unique_orders": 25035,
+    "global_countries": 147,
+    "india_line_items": 1555,
+    "return_rows": 1079,
+    "order_id_overlap": 0
+  },
+  "leakage_notes": [
+    "profit, shipping_cost, ship_date are not in this table and are not used.",
+    "Duplicate order_id rows were dropped; they previously leaked the current return into history.",
+    "Product category/sub-category are not present in the labeled order table."
+  ]
+}
