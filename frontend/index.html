@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Commerce Return Prediction</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">Data science project · order-placement prediction</p>
+      <h1>E-Commerce Return Prediction &amp; Customer Analytics</h1>
+    </div>
+    <p class="tagline">Predict return risk with information available when the order is placed.</p>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="overview" class="active">Overview</button>
+    <button data-tab="eda">Data &amp; EDA</button>
+    <button data-tab="stats">Statistics</button>
+    <button data-tab="model">Model performance</button>
+    <button data-tab="studio">Prediction Studio</button>
+    <button data-tab="explain">Explainability</button>
+    <button data-tab="interview">Interview guide</button>
+  </nav>
+
+  <main>
+    <section id="overview" class="panel active">
+      <div class="card" id="bootStatus"><p class="note">Loading project data from the Flask API… If this stays here, start the app with <code>python backend/app.py</code> and open <code>http://127.0.0.1:5000</code> (do not open the HTML file directly).</p></div>
+    </section>
+    <section id="eda" class="panel"></section>
+    <section id="stats" class="panel"></section>
+    <section id="model" class="panel"></section>
+    <section id="studio" class="panel">
+      <div class="card">
+        <h2>Prediction Studio</h2>
+        <p class="note">Select a real customer from the labeled dataset. History uses only orders strictly before the date you enter. Predictions come from the trained model — nothing is hard-coded.</p>
+        <div class="grid-2">
+          <div>
+            <label>Search customer ID</label>
+            <input id="custSearch" placeholder="Type to filter, e.g. DP-" />
+            <label>Customer</label>
+            <select id="customerSelect"></select>
+            <label>New order date</label>
+            <input type="date" id="orderDate" />
+            <p class="muted" id="custMeta"></p>
+          </div>
+          <div class="metrics" id="histMetrics"></div>
+        </div>
+        <h3>Orders before this date</h3>
+        <div class="table-wrap"><table id="histTable"></table></div>
+      </div>
+      <div class="card">
+        <h3>New order (known at placement)</h3>
+        <div class="form-grid">
+          <label>Region<select id="region"></select></label>
+          <label>Segment<select id="segment"></select></label>
+          <label>Order priority<select id="priority"></select></label>
+          <label>Order value ($)<input type="number" id="orderValue" value="120" step="0.01" min="0" /></label>
+          <label>Quantity<input type="number" id="quantity" value="2" min="1" /></label>
+          <label>Discount (0–1)<input type="number" id="discount" value="0.1" step="0.01" min="0" max="1" /></label>
+          <label>Max discount<input type="number" id="maxDiscount" value="0.1" step="0.01" min="0" max="1" /></label>
+          <label>Number of products<input type="number" id="nProducts" value="1" min="1" /></label>
+          <label>Number of categories<input type="number" id="nCategories" value="1" min="1" /></label>
+        </div>
+        <button class="primary" id="predictBtn">Predict return risk</button>
+        <div id="predResult"></div>
+      </div>
+    </section>
+    <section id="explain" class="panel"></section>
+    <section id="interview" class="panel"></section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

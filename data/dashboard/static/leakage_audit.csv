@@ -1,0 +1,7 @@
+Feature,Available at prediction time?,Future data used?,Safe?,Reason
+total_sales,Yes,No,Yes,Known at cart checkout.
+customer_historical_return_rate,Yes,No,Yes,Calculated strictly prior to current order.
+days_since_previous_order,Yes,No,Yes,Calculated from past orders.
+shipping_cost,No,Yes,No (Excluded),Calculated after shipment. Excluded.
+profit,No,Yes,No (Excluded),Settled post-transaction. Excluded.
+ship_date,No,Yes,No (Excluded),Occurs after order. Excluded.

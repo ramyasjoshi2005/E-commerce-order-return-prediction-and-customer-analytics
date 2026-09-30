@@ -1,0 +1,44 @@
+{
+  "feature_columns": [
+    "order_value",
+    "quantity",
+    "discount",
+    "max_discount",
+    "number_of_products",
+    "number_of_categories",
+    "is_weekend",
+    "previous_order_count",
+    "previous_return_count",
+    "historical_return_rate",
+    "historical_average_order_value",
+    "days_since_previous_order",
+    "is_first_order",
+    "region",
+    "segment",
+    "order_month",
+    "order_day_of_week"
+  ],
+  "numeric_features": [
+    "order_value",
+    "quantity",
+    "discount",
+    "max_discount",
+    "number_of_products",
+    "number_of_categories",
+    "is_weekend",
+    "previous_order_count",
+    "previous_return_count",
+    "historical_return_rate",
+    "historical_average_order_value",
+    "days_since_previous_order",
+    "is_first_order"
+  ],
+  "categorical_features": [
+    "region",
+    "segment",
+    "order_month",
+    "order_day_of_week"
+  ],
+  "selected_model": "Logistic Regression",
+  "threshold": 0.65
+}
