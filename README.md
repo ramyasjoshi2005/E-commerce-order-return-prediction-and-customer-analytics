@@ -186,7 +186,7 @@ Largest mean |SHAP| on the validation sample included `number_of_products`, `pre
 
 ## 13. Application
 
-Flask + HTML/CSS/JS (no Streamlit):
+Flask + HTML/CSS/JS :
 
 1. Overview  
 2. Data & EDA  
